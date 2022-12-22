@@ -1,0 +1,10 @@
+.square {
+    position: fixed;
+    width: 125px;
+    height: 125px;
+}
+
+.square:hover {
+    opacity: 0.3;
+    cursor: pointer; 
+}

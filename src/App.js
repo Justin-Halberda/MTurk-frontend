@@ -11,7 +11,7 @@ function App() {
     {path: "/", element: <Home />},
     {path: "/color", element: <Color />},
     {path: "/orientation", element: <Orientation />},
-    {path: "/feedback", element: <Feedback />}
+    {path: "/feedback", element: <Feedback />},
   ];
 
   const routeComponents = routes.map(({path, element}, key) => (

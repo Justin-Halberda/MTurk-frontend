@@ -51,7 +51,7 @@ export default function RegistrationForm() {
                     helperText="Please select your Gender"
                     onChange={(e) => {gender = e.target.value}}
                     >
-                    {genders.map((option) => (
+                    {genders.map((option, key) => (
                         <MenuItem key={option} value={option}>
                         {option}
                         </MenuItem>
@@ -65,7 +65,7 @@ export default function RegistrationForm() {
                     helperText="Please select your race"
                     onChange={(e) => {race = e.target.value}}
                     >
-                    {races.map((option) => (
+                    {races.map((option, key) => (
                         <MenuItem key={option} value={option}>
                         {option}
                         </MenuItem>
