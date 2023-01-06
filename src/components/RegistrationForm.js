@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import { useDispatch } from 'react-redux'
 import { setUser } from '../utils/slices/userSlice'
@@ -31,10 +32,15 @@ export default function RegistrationForm() {
         <Box
             component="form"
             autoComplete="off"
-            p={15}
+            p={10}
+            px={15}
+            onSubmit={saveUser}
             >
             <Paper elevation={3}>
             <Stack spacing={2} direction="column" p={5}>
+                <Typography variant="h3" gutterBottom>
+                    MTurk
+                </Typography>
                 <TextField
                     required
                     id="age"
@@ -71,7 +77,7 @@ export default function RegistrationForm() {
                         </MenuItem>
                     ))}
                 </TextField>
-                <Button variant="contained" size="large" onClick={saveUser}>Continue</Button>
+                <Button variant="contained" size="large" type='submit'>Continue</Button>
             </Stack>
             </Paper>
         </Box>

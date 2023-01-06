@@ -1,0 +1,10 @@
+.image {
+    position: fixed;
+    width: 175px;
+    height: 150px;
+}
+
+.image:hover {
+    opacity: 0.3;
+    cursor: pointer; 
+}

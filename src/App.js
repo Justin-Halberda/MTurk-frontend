@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Color from "./pages/Color";
 import Orientation from "./pages/Orientation";
 import Feedback from "./pages/Feedback";
+import Trial from "./pages/Trial";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     {path: "/color", element: <Color />},
     {path: "/orientation", element: <Orientation />},
     {path: "/feedback", element: <Feedback />},
+    {path: "/trial", element: <Trial />}
   ];
 
   const routeComponents = routes.map(({path, element}, key) => (
