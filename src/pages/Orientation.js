@@ -16,11 +16,27 @@ export default function Orientation() {
     const [ origBrick, setOrigBrick ] = useState(Math.floor(Math.random() * 8));
     const [ blank, setBlank ] = useState(true);
     const [ newBrick, setNewBrick ] = useState(Math.floor(Math.random() * 8));
+    const [ brick, setBrick ] = useState(imgStyles[newBrick]);
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [startTime, setStartTime] = useState(Date.now());
+    const [ payload, setPayload ] = useState({
+        changing_before: imgStyles[origBrick].src,
+        changing_after: brick.src,
+        changing_x: imgStyles[origBrick].style.left.replace("%", ""),
+        changing_y: imgStyles[origBrick].style.top.replace("%", ""),
+        images_used: [1,2,3,4,5,6,7,8]
+    });
 
     while (origBrick === newBrick) {
         setNewBrick(Math.floor(Math.random() * 8));
+        setBrick(imgStyles[newBrick]);
+        setPayload({
+            changing_before: imgStyles[origBrick].src,
+            changing_after: brick.src,
+            changing_x: imgStyles[origBrick].left.replace("%", ""),
+            changing_y: imgStyles[origBrick].top.replace("%", ""),
+            images_used: [1,2,3,4,5,6,7,8]
+        });
     }
 
     useEffect(() => {
@@ -32,7 +48,9 @@ export default function Orientation() {
         const interval = setInterval(() => {
             setBlank(!blank);
             if (blank) { 
-                imgStyles[origBrick - 1].src == origBrick ? imgStyles[origBrick - 1].src = newBrick : imgStyles[origBrick - 1].src = origBrick;
+                let temp = imgStyles[origBrick];
+                imgStyles[origBrick] = brick;
+                setBrick(temp);
             }
 
         }, 1000);
@@ -48,6 +66,6 @@ export default function Orientation() {
     }
 
     return (blank ? <div></div> : imgStyles.map((img, key) => (
-        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {`bricks/${img.src}.jpg`}/>
+        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {`bricks/${img.src}.jpg`} payload = {payload} type={"orientation"}/>
     )));
 }

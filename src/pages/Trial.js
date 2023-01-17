@@ -20,12 +20,21 @@ export default function Trial() {
     const [ blank, setBlank ] = useState(true);
     const [ newImgCat, setNewImgCat ] = useState(categories[Math.floor(Math.random() * 8)]);
     const [ newImg, setNewImg ] = useState(Math.floor(Math.random() * 10));
+    const [ imgSrc, setImgSrc ] = useState(newImgCat + "/" + newImgCat + "/" + newImg + ".jpg");
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [ startTime, setStartTime ] = useState(Date.now());
+    const [ payload, setPayload ] = useState({
+        changing_before: origSrc,
+        changing_after: imgSrc,
+        changing_x: imgStyles[origImg].style.left.replace("%", ""),
+        changing_y: imgStyles[origImg].style.top.replace("%", ""),
+        images_used: imgStyles.map((style, key) => { return style.src })
+    });
 
-    while (origSrc.includes(categories[newImgCat] + "/" + newImg)) {
+    while (origSrc.includes(imgSrc)) {
         setNewImgCat(categories[Math.floor(Math.random() * 8)]);
         setNewImg(Math.floor(Math.random() * 10));
+        setImgSrc(newImgCat + "/" + newImgCat + "/" + newImg + ".jpg");
     }
 
     useEffect(() => {
@@ -37,8 +46,9 @@ export default function Trial() {
         const interval = setInterval(() => {
             setBlank(!blank);
             if (blank) { 
-                let temp = newImgCat + "/" + newImgCat + newImg + ".jpg";
-                imgStyles[origImg].src === origSrc ? imgStyles[origImg].src = temp : imgStyles[origImg].src = origSrc;
+                let temp = imgStyles[origImg].src;
+                imgStyles[origImg].src = imgSrc;
+                setImgSrc(temp);
             }
 
         }, 1000);
@@ -55,6 +65,6 @@ export default function Trial() {
     }
 
     return (blank ? <div></div> : imgStyles.map((img, key) => (
-        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {img.src}/>
+        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {img.src} payload = {payload} type={"trial"}/>
     )));
 }

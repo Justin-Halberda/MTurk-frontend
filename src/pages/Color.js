@@ -21,11 +21,17 @@ export default function Color() {
     const [ color, setColor ] = useState(extraColors[colorIndex]);
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [ origColor, setOrigColor ] = useState(squaresStyles[styleIndex].background);
-    const [startTime, setStartTime] = useState(Date.now());
+    const [ startTime, setStartTime ] = useState(Date.now());
+    const [ payload, setPayload ] = useState({
+        changing_before: origColor,
+        changing_after: color,
+        changing_x: squaresStyles[styleIndex].left.replace("%", ""),
+        changing_y: squaresStyles[styleIndex].top.replace("%", ""),
+        colors_used: squaresStyles.map((style, key) => { return style.background })
+    });
 
     useEffect(() => {
         if (spaceKey) {
-            squaresStyles[styleIndex] = { left: squaresStyles[styleIndex].left, top: squaresStyles[styleIndex].top, background: origColor};
             setBlank(false);
             return;
         }
@@ -51,6 +57,6 @@ export default function Color() {
     }
 
     return (blank ? <div></div> : squaresStyles.map((style, key) => (
-        <Square className = {spaceKey ? "decision" : ""} style = {style}/>
+        <Square className = {spaceKey ? "decision" : ""} style = {style} payload = {payload}/>
     )));
 }
