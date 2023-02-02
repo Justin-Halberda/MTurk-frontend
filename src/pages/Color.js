@@ -52,6 +52,10 @@ export default function Color() {
         if (e.key === " " || e.code === "Space") {
             const endTime = Date.now();
             const duration = endTime - startTime;
+            setPayload({
+                ...payload,
+                time: duration
+            });
             setSpaceKey(true);
         }
     }

@@ -16,7 +16,7 @@ export default function Orientation() {
     const [ origBrick, setOrigBrick ] = useState(Math.floor(Math.random() * 8));
     const [ blank, setBlank ] = useState(true);
     const [ newBrick, setNewBrick ] = useState(Math.floor(Math.random() * 8));
-    const [ brick, setBrick ] = useState(imgStyles[newBrick]);
+    const [ brick, setBrick ] = useState({style: { left: imgStyles[origBrick].style.left, top: imgStyles[origBrick].style.top, width: imgStyles[newBrick].style.width, height: imgStyles[newBrick].style.height}, src: imgStyles[newBrick].src});
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [startTime, setStartTime] = useState(Date.now());
     const [ payload, setPayload ] = useState({
@@ -29,13 +29,10 @@ export default function Orientation() {
 
     while (origBrick === newBrick) {
         setNewBrick(Math.floor(Math.random() * 8));
-        setBrick(imgStyles[newBrick]);
+        setBrick({style: { left: imgStyles[origBrick].style.left, top: imgStyles[origBrick].style.top, width: imgStyles[newBrick].style.width, height: imgStyles[newBrick].style.height}, src: imgStyles[newBrick].src});
         setPayload({
-            changing_before: imgStyles[origBrick].src,
-            changing_after: brick.src,
-            changing_x: imgStyles[origBrick].left.replace("%", ""),
-            changing_y: imgStyles[origBrick].top.replace("%", ""),
-            images_used: [1,2,3,4,5,6,7,8]
+            ...payload,
+            changing_after: brick.src
         });
     }
 
@@ -61,6 +58,10 @@ export default function Orientation() {
         if (e.key === " " || e.code === "Space") {
             const endTime = Date.now();
             const duration = endTime - startTime;
+            setPayload({
+                ...payload,
+                time: duration
+            });
             setSpaceKey(true);
         }
     }

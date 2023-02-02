@@ -11,6 +11,7 @@ export const orientationSlice = createSlice({
     changing_after: "",
     changing_x: "",
     changing_y: "",
+    time: 0,
     images_used: [] 
   },
   reducers: {
@@ -23,6 +24,7 @@ export const orientationSlice = createSlice({
       state.changing_after = action.payload.changing_after;
       state.changing_x = action.payload.changing_x;
       state.changing_y = action.payload.changing_y;
+      state.time = action.payload.time;
       state.images_used = action.payload.images_used;
     },
   },

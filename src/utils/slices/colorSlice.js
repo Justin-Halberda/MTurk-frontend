@@ -11,6 +11,7 @@ export const colorSlice = createSlice({
     changing_after: "",
     changing_x: "",
     changing_y: "",
+    time: 0,
     colors_used: [] 
   },
   reducers: {
@@ -23,6 +24,7 @@ export const colorSlice = createSlice({
       state.changing_after = action.payload.changing_after;
       state.changing_x = action.payload.changing_x;
       state.changing_y = action.payload.changing_y;
+      state.time = action.payload.time;
       state.colors_used = action.payload.colors_used;
     },
   },
