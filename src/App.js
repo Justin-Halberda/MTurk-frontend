@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import Color from "./pages/Color";
 import Orientation from "./pages/Orientation";
-import Feedback from "./pages/Feedback";
 import Trial from "./pages/Trial";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
     {path: "/", element: <Home />},
     {path: "/color", element: <Color />},
     {path: "/orientation", element: <Orientation />},
-    {path: "/feedback", element: <Feedback />},
     {path: "/trial", element: <Trial />}
   ];
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Square from '../components/Square'
+import { useNavigate } from "react-router-dom";
+import store from '../utils/store';
 
 const squaresStyles = [
     { left:"5%", top: "7%", background: "blue", writable: true},
@@ -29,6 +31,14 @@ export default function Color() {
         changing_y: squaresStyles[styleIndex].top.replace("%", ""),
         colors_used: squaresStyles.map((style, key) => { return style.background })
     });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!store.getState().user.age) {
+            navigate("/");
+        }
+    }, []);
 
     useEffect(() => {
         if (spaceKey) {

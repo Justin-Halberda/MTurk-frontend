@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from '../components/Image'
+import { useNavigate } from "react-router-dom";
+import store from '../utils/store';
 
 const imgStyles = [
     {style: { left:"5%", top: "7%", writable: true}, src: "BFH/BFH" + (Math.floor(Math.random() * 10) + 1) + ".jpg"},
@@ -38,6 +40,14 @@ export default function Trial() {
             changing_after: newImgCat + "/" + newImgCat + newImg + ".jpg",
         });
     }
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!store.getState().user.age) {
+            navigate("/");
+        }
+    }, []);
 
     useEffect(() => {
         if (spaceKey) {
