@@ -20,8 +20,8 @@ export default function Orientation() {
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [startTime, setStartTime] = useState(Date.now());
     const [ payload, setPayload ] = useState({
-        changing_before: imgStyles[origBrick].src,
-        changing_after: brick.src,
+        changing_before: "bricks/" + imgStyles[origBrick].src + ".jpg",
+        changing_after: "bricks/" + brick.src + ".jpg",
         changing_x: imgStyles[origBrick].style.left.replace("%", ""),
         changing_y: imgStyles[origBrick].style.top.replace("%", ""),
         images_used: [1,2,3,4,5,6,7,8]
@@ -32,7 +32,7 @@ export default function Orientation() {
         setBrick({style: { left: imgStyles[origBrick].style.left, top: imgStyles[origBrick].style.top, width: imgStyles[newBrick].style.width, height: imgStyles[newBrick].style.height}, src: imgStyles[newBrick].src});
         setPayload({
             ...payload,
-            changing_after: brick.src
+            changing_after: "bricks/" + brick.src + ".jpg"
         });
     }
 

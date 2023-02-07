@@ -37,6 +37,9 @@ export default function Image(props) {
       };
 
     const handleClick = ({ left, top }, src ) => {
+        alert(payload.changing_before);
+        alert(payload.changing_after);
+        alert(src);
         payload.correct = payload.changing_before === src || payload.changing_after === src;
         payload.selected = src;
         payload.selected_x = left.replace("%", "");
@@ -47,8 +50,6 @@ export default function Image(props) {
     return (
         <>
             <img src={require(`../assests/${src}`)} alt="could not load" className="image" style={style} onClick={() => handleClick(style, src)}/>
-
-            <div className="square" style={style} onClick={() => handleClick(style)}/>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={payload.correct ? "success" : "error"} sx={{ width: '100%' }}>
                     { payload.correct ? "Right Choice! " : "Wrong Choice! " } Close to continue
