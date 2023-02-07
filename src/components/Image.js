@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { setOrientation } from '../utils/slices/orientationSlice';
 import { setTrial } from '../utils/slices/trialSlice';
+import store from '../utils/store';
+import mTurkAPI from '../services/mTurkAPI';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -19,7 +21,9 @@ export default function Image(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleClose = (event, reason) => {
+    const api = new mTurkAPI()
+
+    const handleClose = async (event, reason) => {
         if (reason === 'clickaway') {
           return;
         }
@@ -28,6 +32,7 @@ export default function Image(props) {
         
         if (type === "trial") { 
             dispatch(setTrial(payload));
+            await api.write(store.getState());
             navigate("/"); 
         }
         else {
