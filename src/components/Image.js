@@ -26,7 +26,7 @@ export default function Image(props) {
     
         setOpen(false);
         
-        if (type === "tial") { 
+        if (type === "trial") { 
             dispatch(setTrial(payload));
             navigate("/"); 
         }
@@ -37,9 +37,6 @@ export default function Image(props) {
       };
 
     const handleClick = ({ left, top }, src ) => {
-        alert(payload.changing_before);
-        alert(payload.changing_after);
-        alert(src);
         payload.correct = payload.changing_before === src || payload.changing_after === src;
         payload.selected = src;
         payload.selected_x = left.replace("%", "");
