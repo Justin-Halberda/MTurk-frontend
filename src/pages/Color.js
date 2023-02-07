@@ -61,6 +61,6 @@ export default function Color() {
     }
 
     return (blank ? <div></div> : squaresStyles.map((style, key) => (
-        <Square className = {spaceKey ? "decision" : ""} style = {style} payload = {payload}/>
+        <Square spaceKey = {spaceKey} style = {style} payload = {payload}/>
     )));
 }

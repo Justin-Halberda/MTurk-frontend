@@ -1,10 +1,10 @@
-.square {
+.square, .decision {
     position: fixed;
     width: 125px;
     height: 125px;
 }
 
-.square:hover {
+.decision:hover {
     opacity: 0.3;
     cursor: pointer; 
 }

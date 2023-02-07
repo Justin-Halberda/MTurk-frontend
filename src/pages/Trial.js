@@ -66,6 +66,6 @@ export default function Trial() {
     }
 
     return (blank ? <div></div> : imgStyles.map((img, key) => (
-        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {img.src} payload = {payload} type={"trial"}/>
+        <Image spaceKey = {spaceKey} style = {img.style} src = {img.src} payload = {payload} type={"trial"}/>
     )));
 }

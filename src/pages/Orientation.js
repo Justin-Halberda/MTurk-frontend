@@ -67,6 +67,6 @@ export default function Orientation() {
     }
 
     return (blank ? <div></div> : imgStyles.map((img, key) => (
-        <Image className = {spaceKey ? "decision" : ""} style = {img.style} src = {`bricks/${img.src}.jpg`} payload = {payload} type={"orientation"}/>
+        <Image spaceKey = {spaceKey} style = {img.style} src = {`bricks/${img.src}.jpg`} payload = {payload} type={"orientation"}/>
     )));
 }

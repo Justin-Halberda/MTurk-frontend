@@ -12,7 +12,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   });
 
 export default function Image(props) {
-    const { style, src, payload, type } = props;
+    const { spaceKey, style, src, payload, type } = props;
 
     const [ open, setOpen ] = React.useState(false);
 
@@ -46,8 +46,8 @@ export default function Image(props) {
     }
     return (
         <>
-            <img src={require(`../assests/${src}`)} alt="could not load" className="image" style={style} onClick={() => handleClick(style, src)}/>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <img src={require(`../assests/${src}`)} alt="could not load" className={spaceKey ? "image-decision" : "image"} style={style} onClick={() => handleClick(style, src)}/>
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={payload.correct ? "success" : "error"} sx={{ width: '100%' }}>
                     { payload.correct ? "Right Choice! " : "Wrong Choice! " } Close to continue
                 </Alert>

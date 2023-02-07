@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import '../styles/Square.css';
@@ -11,9 +11,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   });
 
 export default function Square(props) {
-    const { style, payload } = props;
+    const { spaceKey, style, payload } = props;
 
-    const [ open, setOpen ] = React.useState(false);
+    const [ open, setOpen ] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,8 +40,8 @@ export default function Square(props) {
 
     return (
         <>
-            <div className="square" style={style} onClick={() => handleClick(style)}/>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <div className={spaceKey ? "decision" : "square"} style={style} onClick={() => handleClick(style)}/>
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={payload.correct ? "success" : "error"} sx={{ width: '100%' }}>
                     { payload.correct ? "Right Choice! " : "Wrong Choice! " } Close to continue
                 </Alert>
