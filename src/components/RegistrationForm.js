@@ -25,7 +25,7 @@ export default function RegistrationForm() {
 
     const saveUser = () => {
         dispatch(setUser({ age, race, gender }));
-        navigate("/color");
+        navigate("/instructions");
     }
 
     return (
