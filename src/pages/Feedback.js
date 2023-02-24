@@ -29,9 +29,8 @@ export default function Feedback(props) {
             alignItems: 'center',
             justifyContent: 'center',
             height: '90vh',
-            "font-size": '4.0vw',
-            "font-family": "Calibri, sans-serif",
-            "font-weight": "normal",
+            fontSize: '4.0vw',
+            fontFamily: "Calibri, sans-serif",
             color: `${message ? "#696969" : colors[correct] }`
         }}>
             <div>

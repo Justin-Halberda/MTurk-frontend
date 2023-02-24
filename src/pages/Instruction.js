@@ -17,7 +17,7 @@ export default function Instructon() {
             alignItems: 'center',
             justifyContent: 'center',
             height: '90vh',
-            "font-size": '1.75vw',
+            fontSize: '1.75vw',
           }}>
             <div>
                 <p>Dear Participant,</p>
