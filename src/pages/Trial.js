@@ -14,7 +14,7 @@ const imgStyles = [
     {style: { left: "85%", top: "30%"}, src: "WML/WML" + (Math.floor(Math.random() * 10) + 1) + ".jpg"},
 ];
 
-const categories = ["BFH", "BFL", "BMH", "BML", "WHF", "WFL", "WMH", "WML"];
+const categories = ["BFH", "BFL", "BMH", "BML", "WFH", "WFL", "WMH", "WML"];
 
 export default function Trial() {
     const [ origImg, setOrigImg ] = useState(Math.floor(Math.random() * 8));

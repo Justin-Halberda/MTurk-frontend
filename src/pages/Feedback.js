@@ -19,7 +19,7 @@ export default function Feedback(props) {
 
     document.body.onkeyup = (e) => {
         if (e.key === " " || e.code === "Space") {
-            message ? navigate(next) : navigate("/feedback", {state: {message: "FIND THE CHANGING ITEM!", next: next}});
+            message ? navigate(next) : navigate("/feedback", {state: {message: next === "/" ? "Thanks for participating!" : "FIND THE CHANGING ITEM!", next: next}});
         }
     }
 

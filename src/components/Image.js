@@ -24,7 +24,7 @@ export default function Image(props) {
         if (type === "trial") { 
             dispatch(setTrial(payload));
             await api.write(store.getState());
-            navigate("/feedback", {state: {message: "Thanks for participating!", correct: payload.correct, next: "/"}});
+            navigate("/feedback", {state: {correct: payload.correct, next: "/"}});
         }
         else {
             dispatch(setOrientation(payload));
