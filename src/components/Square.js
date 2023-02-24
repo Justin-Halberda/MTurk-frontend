@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import React from 'react';
 import '../styles/Square.css';
 import { setColor } from '../utils/slices/colorSlice';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-
 export default function Square(props) {
     const { spaceKey, style, payload } = props;
 
-    const [ open, setOpen ] = useState(false);
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setOpen(false);
-        
-        dispatch(setColor(payload));
-        navigate("/orientation");
-      };
 
     const handleClick = ({ left, top, background }) => {
         payload.correct = payload.changing_before === background || payload.changing_after === background;
@@ -35,19 +16,13 @@ export default function Square(props) {
         payload.selected_x = left.replace("%", "");
         payload.selected_y = top.replace("%", "");
 
-        setOpen(true);
+        dispatch(setColor(payload));
+        navigate("/feedback", {state: {correct: payload.correct, next: "/orientation"}});
     }
 
     return (
         <>
             <div className={spaceKey ? "decision" : "square"} style={style} onClick={() => handleClick(style)}/>
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={payload.correct ? "success" : "error"} sx={{ width: '100%' }}>
-                    { payload.correct ? "Right Choice! " : "Wrong Choice! " } Close to continue
-                </Alert>
-            </Snackbar>
-        </>
-        
-        
+        </>   
     )
 }

@@ -7,7 +7,7 @@ export default function Instructon() {
 
     document.body.onkeyup = (e) => {
         if (e.key === " " || e.code === "Space") {
-            navigate("/color");
+            navigate("/feedback", {state: {message: "FIND THE CHANGING ITEM!", next: "/color"}});
         }
     }
 
