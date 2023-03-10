@@ -1,7 +1,7 @@
 import axios, * as others from 'axios';
 
 export default class api {
-    constructor(baseUrl = "http://localhost:6060") {        
+    constructor(baseUrl = "https://mturk.onrender.com") {        
         this.instance =
             axios.create({
                 baseURL: baseUrl,
