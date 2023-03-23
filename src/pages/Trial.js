@@ -24,6 +24,7 @@ export default function Trial() {
     const [ newImg, setNewImg ] = useState((Math.floor(Math.random() * 10) + 1));
     const [ spaceKey, setSpaceKey ] = useState(false);
     const [ startTime, setStartTime ] = useState(Date.now());
+    const [ loaded, setLoaded ] = useState(false);
     const [ payload, setPayload ] = useState({
         changing_before: origSrc,
         changing_after: newImgCat + "/" + newImgCat + newImg + ".jpg",
@@ -51,6 +52,7 @@ export default function Trial() {
         if (!store.getState().user.age) {
             navigate("/");
         }
+        setTimeout(() => { setLoaded(true)}, 2000);
     }, []);
 
     useEffect(() => {
@@ -88,7 +90,7 @@ export default function Trial() {
     }
 
     return (
-        <div style={blank ? {display: "none"} : {}}>
+        <div style={blank ? {display: "none"} : {visibility: loaded? "visible" : "hidden"}}>
             {imgStyles.map((img, key) => (
                 <Image spaceKey = {spaceKey} style = {img.style} src = {img.src} payload = {payload} type={"trial"}/>
             ))}
